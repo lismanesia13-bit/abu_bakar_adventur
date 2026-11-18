@@ -1,0 +1,613 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Abu Bakar Adventure Premium</title>
+<style>
+:root{
+--green:#087c62;
+--pink:#f5a9c9;
+--blue:#477fe7;
+--white:#fff;
+--yellow:#ffcf57;
+}
+*{box-sizing:border-box}
+body{
+margin:0;
+font-family:Arial,sans-serif;
+background:linear-gradient(135deg,#d9f8e8,#e0eaff,#ffe5f0);
+color:#193c34;
+}
+.container{max-width:850px;margin:auto;padding:18px}
+.hero{
+background:linear-gradient(125deg,#087b61,#075b75,#263d83);
+color:white;padding:35px 22px;border-radius:24px;
+position:relative;overflow:hidden;
+}
+.hero h1{font-size:38px;margin:12px 0 5px}
+.hero h1 span{color:#ffda79}
+.hero p{font-weight:bold}
+.decor{
+position:absolute;font-size:42px;
+animation:float 3s infinite ease-in-out;
+}
+.d1{right:7%;top:20px}
+.d2{right:25%;bottom:15px}
+.d3{right:6%;bottom:20px}
+@keyframes float{
+0%,100%{transform:translateY(0) rotate(-5deg)}
+50%{transform:translateY(-14px) rotate(5deg)}
+}
+.card{
+background:white;padding:22px;border-radius:20px;
+margin-top:17px;box-shadow:0 7px 25px #123a2415;
+}
+button{
+border:0;border-radius:13px;padding:14px 18px;
+font-weight:bold;cursor:pointer;transition:.2s;
+}
+button:active{transform:scale(.97)}
+.btn{width:100%;margin-top:10px;font-size:15px}
+.green{background:var(--green);color:white}
+.pink{background:var(--pink);color:#742c50}
+.yellow{background:var(--yellow);color:#594000}
+.blue{background:var(--blue);color:white}
+.soft{background:#e8f6ef;color:#08775c}
+input{
+width:100%;padding:14px;border:2px solid #dcebe3;
+border-radius:12px;margin-top:8px;font-size:16px;
+outline:none;
+}
+input:focus{border-color:var(--green)}
+.hidden{display:none!important}
+.mini{font-size:11px;font-weight:bold;letter-spacing:1.5px}
+.scene{
+background:linear-gradient(120deg,#d7f6e8,#dbeaff,#ffe3ef);
+border-radius:17px;padding:15px;
+}
+.icons{
+display:grid;grid-template-columns:repeat(4,1fr);
+gap:8px;text-align:center;margin-top:15px;
+}
+.iconbox{
+background:#ffffff99;border-radius:13px;padding:12px;
+}
+.iconbox div{font-size:30px;animation:float 3s infinite}
+.iconbox small{font-weight:bold}
+.progress{
+height:11px;background:#e5eee8;
+border-radius:20px;overflow:hidden;margin-top:12px;
+}
+.progress div{
+height:100%;background:linear-gradient(90deg,#15b981,#65c9ed);
+transition:.4s;
+}
+.players{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:15px}
+.player{
+padding:13px;border-radius:12px;background:#e8f6ef;
+}
+.player.active{background:#fff2cf;border:2px solid #f4bd42}
+.player strong{font-size:21px}
+.answer{
+width:100%;text-align:left;background:white;
+border:2px solid #e2ece7;border-radius:13px;
+padding:14px;margin-top:9px;font-size:15px;
+}
+.answer:hover{border-color:#0b9d77;background:#f1fff8}
+.answer.good{background:#d7f8e6;border-color:#16a56c}
+.answer.bad{background:#ffe0e9;border-color:#ed7293}
+.answer:disabled{cursor:default}
+.feedback{padding:15px;border-radius:13px;margin-top:13px;font-size:14px}
+.award{
+background:#fff2c8;border:1px solid #f0d88f;
+border-radius:14px;padding:14px;text-align:center;
+}
+.badges{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.badge{
+background:#fff2c8;padding:12px 5px;
+text-align:center;border-radius:13px;
+}
+.badge span{font-size:28px}
+.badge small{display:block;font-weight:bold}
+.lock{filter:grayscale(1);opacity:.4}
+.boardrow{
+display:flex;justify-content:space-between;
+background:#edf7f1;padding:12px;
+border-radius:12px;margin-top:7px;font-weight:bold;
+}
+footer{text-align:center;padding:20px;font-size:11px;font-weight:bold}
+@media(max-width:500px){
+.hero h1{font-size:30px}
+.container{padding:10px}
+.card{padding:16px}
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+<header class="hero">
+<div class="mini">✦ PREMIUM ISLAMIC EDUCATIONAL GAME ✦</div>
+<h1>ABU BAKAR<br><span>ADVENTURE</span></h1>
+<p>THE CALIPH CHALLENGE • KELAS VI SD</p>
+<div class="decor d1">🏮</div>
+<div class="decor d2">⚔️</div>
+<div class="decor d3">📖</div>
+</header>
+
+<div class="card">
+<div style="display:flex;justify-content:space-between;gap:8px">
+<button class="soft" onclick="toggleMusic()" id="musicBtn">♫ MUSIK OFF</button>
+<button class="pink" onclick="toggleSound()" id="soundBtn">🔊 EFEK ON</button>
+</div>
+</div>
+
+<!-- BERANDA -->
+<section id="home">
+<div class="card scene">
+<div style="font-size:55px;text-align:center">🕌</div>
+<h2 style="text-align:center">Petualangan Dimulai!</h2>
+<p style="text-align:center">Jadilah penjelajah ilmu dan taklukkan 10 tantangan tentang Abu Bakar Ash-Shiddiq RA!</p>
+<div class="icons">
+<div class="iconbox"><div>⚔️</div><small>Senjata</small></div>
+<div class="iconbox"><div>🏮</div><small>Lentera</small></div>
+<div class="iconbox"><div>📖</div><small>Al-Qur'an</small></div>
+<div class="iconbox"><div>🌾</div><small>Pangan</small></div>
+</div>
+</div>
+
+<div class="card">
+<div class="mini">PILIH ARENA PERTANDINGAN</div>
+<button class="btn green" onclick="chooseMode('single')">
+👤 MODE TUNGGAL<br><small>Petualangan satu pemain</small>
+</button>
+<button class="btn pink" onclick="chooseMode('duel')">
+⚔️ MODE TANDING<br><small>Dua pemain dalam satu arena</small>
+</button>
+</div>
+
+<div class="card">
+<h3>🏆 HALL OF FAME</h3>
+<div id="leaderboard">Belum ada juara.</div>
+<button class="btn soft" onclick="clearBoard()">HAPUS PAPAN PERINGKAT</button>
+</div>
+
+<div class="card">
+<h3>🎖️ GALERI PENGHARGAAN</h3>
+<div class="badges">
+<div class="badge"><span>🥉</span><small>Pemula</small></div>
+<div class="badge"><span>🥈</span><small>Cendekia</small></div>
+<div class="badge"><span>🥇</span><small>Juara</small></div>
+<div class="badge"><span>👑</span><small>Master</small></div>
+</div>
+</div>
+</section>
+
+<!-- IDENTITAS -->
+<section id="setup" class="hidden card">
+<button onclick="goHome()" class="soft">← Kembali</button>
+<h2 id="setupTitle">IDENTITAS PEMAIN</h2>
+
+<label>👤 Nama Pemain 1</label>
+<input id="name1" maxlength="24" placeholder="Masukkan nama pemain">
+
+<div id="player2" class="hidden">
+<label>👤 Nama Pemain 2</label>
+<input id="name2" maxlength="24" placeholder="Masukkan nama pemain kedua">
+</div>
+
+<div class="scene" style="margin-top:15px">
+<strong>📜 ATURAN PERMAINAN</strong>
+<p>• Terdapat 10 soal acak.</p>
+<p>• Waktu menjawab 30 detik.</p>
+<p>• Jawaban benar mendapatkan 100 poin.</p>
+<p>• Mode tanding dilakukan secara bergantian.</p>
+</div>
+<button class="btn yellow" onclick="startGame()">🚀 MULAI PERTANDINGAN</button>
+</section>
+
+<!-- ARENA -->
+<section id="game" class="hidden">
+
+<div class="card">
+<div style="display:flex;justify-content:space-between">
+<div>
+<div class="mini">⚡ LIVE CHALLENGE</div>
+<h3 id="round">SOAL 1 / 10</h3>
+</div>
+<div style="text-align:right">
+<small>SISA WAKTU</small>
+<h2 id="clock">30</h2>
+</div>
+</div>
+
+<div class="progress"><div id="bar" style="width:10%"></div></div>
+<div class="players" id="scoreboard"></div>
+</div>
+
+<div class="scene icons">
+<div class="iconbox"><div>⚔️</div><small>Keberanian</small></div>
+<div class="iconbox"><div>🏮</div><small>Semangat</small></div>
+<div class="iconbox"><div>📖</div><small>Ilmu</small></div>
+<div class="iconbox"><div>🌾</div><small>Kepedulian</small></div>
+</div>
+
+<div class="card">
+<div class="mini">📜 MISSION QUESTION</div>
+<h2 id="question"></h2>
+<div id="options"></div>
+<div id="feedback" class="feedback hidden"></div>
+<button id="nextBtn" class="btn yellow hidden" onclick="nextQuestion()">LANJUTKAN ➜</button>
+</div>
+</section>
+
+<!-- HASIL -->
+<section id="result" class="hidden">
+
+<div class="card" style="text-align:center">
+<div style="font-size:65px" id="trophy">🏆</div>
+<div class="mini">MISSION COMPLETED</div>
+<h2 id="resultTitle">LUAR BIASA!</h2>
+<p id="resultText"></p>
+<div id="finalScores" class="players"></div>
+<div class="award" style="margin-top:18px">
+<div style="font-size:50px" id="medal">🥇</div>
+<h2 id="rank">MASTER ILMU</h2>
+<p id="rankText"></p>
+</div>
+</div>
+
+<div class="card">
+<h3>🎖️ LENCANA PENGHARGAAN</h3>
+<div id="earned" class="badges"></div>
+</div>
+
+<div class="card">
+<h3>📋 REKAP PERTANDINGAN</h3>
+<div id="recap"></div>
+</div>
+
+<button class="btn green" onclick="goHome()">🏠 KEMBALI KE BERANDA</button>
+<button class="btn yellow" onclick="replay()">🔄 MAIN KEMBALI</button>
+</section>
+
+<footer>ABU BAKAR ADVENTURE • LEARN • PLAY • INSPIRE</footer>
+</div>
+
+<script>
+const questions=[
+{q:"Siapakah nama asli Abu Bakar Ash-Shiddiq?",a:["Abdullah bin Abi Quhafah","Umar bin Khattab","Utsman bin Affan","Ali bin Abi Thalib"],c:0,e:"Nama asli Abu Bakar adalah Abdullah bin Abi Quhafah."},
+{q:"Apa arti gelar Ash-Shiddiq?",a:["Pemberani","Sangat membenarkan","Pemimpin pasukan","Dermawan"],c:1,e:"Ash-Shiddiq berarti orang yang sangat membenarkan kebenaran."},
+{q:"Siapa yang menemani Rasulullah ketika hijrah ke Gua Tsur?",a:["Bilal bin Rabah","Ali bin Abi Thalib","Abu Bakar Ash-Shiddiq","Zaid bin Tsabit"],c:2,e:"Abu Bakar mendampingi Rasulullah dalam perjalanan hijrah."},
+{q:"Abu Bakar merupakan khalifah yang keberapa?",a:["Pertama","Kedua","Ketiga","Keempat"],c:0,e:"Abu Bakar merupakan khalifah pertama Khulafaur Rasyidin."},
+{q:"Berapa lama masa kekhalifahan Abu Bakar?",a:["Sekitar 2 tahun 3 bulan","5 tahun","10 tahun","12 tahun"],c:0,e:"Beliau memimpin sekitar dua tahun tiga bulan."},
+{q:"Siapa yang mengusulkan pengumpulan Al-Qur'an pada masa Abu Bakar?",a:["Khalid bin Walid","Umar bin Khattab","Bilal bin Rabah","Abu Hurairah"],c:1,e:"Umar bin Khattab mengusulkan pengumpulan Al-Qur'an."},
+{q:"Siapa yang ditugaskan mengumpulkan ayat Al-Qur'an?",a:["Zaid bin Tsabit","Abu Lahab","Abu Sufyan","Muawiyah"],c:0,e:"Zaid bin Tsabit ditugaskan mengumpulkan ayat Al-Qur'an."},
+{q:"Apa tindakan Abu Bakar terhadap orang yang menolak membayar zakat?",a:["Membiarkannya","Menghapus zakat","Tegas mempertahankan kewajiban zakat","Mengganti zakat"],c:2,e:"Abu Bakar tegas mempertahankan kewajiban zakat."},
+{q:"Sifat Abu Bakar yang patut diteladani adalah ...",a:["Sombong dan boros","Jujur, setia, dan dermawan","Pemarah","Malas"],c:1,e:"Beliau dikenal jujur, setia, dermawan, dan rendah hati."},
+{q:"Bagaimana keteladanan Abu Bakar dalam menggunakan hartanya?",a:["Untuk berfoya-foya","Untuk menyombongkan diri","Untuk membantu perjuangan Islam","Untuk merugikan orang lain"],c:2,e:"Abu Bakar menginfakkan hartanya demi perjuangan Islam."}
+];
+
+let mode="single",names=[],scores=[],round=0,turn=0;
+let sequence=[],timer=null,seconds=30,locked=false,history=[];
+let sound=true,music=false,audio=null,musicTimer=null;
+let board=[];
+
+try{board=JSON.parse(localStorage.getItem("abuBoard")||"[]")}catch(e){}
+
+const $=id=>document.getElementById(id);
+
+function show(id){
+["home","setup","game","result"].forEach(x=>$(x).classList.toggle("hidden",x!==id));
+}
+
+function escapeHTML(s){
+return String(s).replace(/[&<>"']/g,c=>({
+"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
+}[c]));
+}
+
+function playTone(f=600,d=.1,type="sine"){
+if(!sound)return;
+try{
+audio=audio||new(window.AudioContext||window.webkitAudioContext)();
+let o=audio.createOscillator(),g=audio.createGain();
+o.type=type;
+o.frequency.value=f;
+g.gain.setValueAtTime(.06,audio.currentTime);
+g.gain.exponentialRampToValueAtTime(.001,audio.currentTime+d);
+o.connect(g);g.connect(audio.destination);
+o.start();o.stop(audio.currentTime+d);
+}catch(e){}
+}
+
+function toggleSound(){
+sound=!sound;
+$("soundBtn").textContent=sound?"🔊 EFEK ON":"🔇 EFEK OFF";
+playTone(650);
+}
+
+function toggleMusic(){
+music=!music;
+$("musicBtn").textContent=music?"♫ MUSIK ON":"♫ MUSIK OFF";
+
+if(music){
+try{
+audio=audio||new(window.AudioContext||window.webkitAudioContext)();
+audio.resume();
+let notes=[523,659,784,698,784,880,784,659,587,698,784,988];
+let i=0;
+function play(){
+if(!music)return;
+let o=audio.createOscillator(),g=audio.createGain();
+o.type="triangle";
+o.frequency.value=notes[i++%notes.length];
+g.gain.setValueAtTime(.0001,audio.currentTime);
+g.gain.exponentialRampToValueAtTime(.022,audio.currentTime+.04);
+g.gain.exponentialRampToValueAtTime(.0001,audio.currentTime+.3);
+o.connect(g);g.connect(audio.destination);
+o.start();o.stop(audio.currentTime+.32);
+musicTimer=setTimeout(play,350);
+}
+play();
+}catch(e){music=false}
+}else{
+clearTimeout(musicTimer);
+}
+}
+
+function chooseMode(m){
+mode=m;
+$("setupTitle").textContent=m==="single"?"MODE TUNGGAL":"MODE TANDING";
+$("player2").classList.toggle("hidden",m!=="duel");
+$("name1").value="";
+$("name2").value="";
+show("setup");
+playTone(650);
+}
+
+function startGame(){
+let a=$("name1").value.trim();
+let b=$("name2").value.trim();
+
+if(!a||(mode==="duel"&&!b)){
+alert("Silakan isi nama semua pemain!");
+return;
+}
+
+if(mode==="duel"&&a.toLowerCase()===b.toLowerCase()){
+alert("Gunakan nama yang berbeda!");
+return;
+}
+
+names=mode==="single"?[a]:[a,b];
+scores=names.map(()=>0);
+sequence=shuffle(questions.map((_,i)=>i));
+round=0;
+turn=0;
+history=[];
+show("game");
+drawQuestion();
+}
+
+function shuffle(arr){
+let a=[...arr];
+for(let i=a.length-1;i>0;i--){
+let j=Math.floor(Math.random()*(i+1));
+[a[i],a[j]]=[a[j],a[i]];
+}
+return a;
+}
+
+function updateScores(){
+$("scoreboard").innerHTML=names.map((n,i)=>`
+<div class="player ${i===turn?"active":""}">
+<div>${i===turn?"🎯 GILIRAN":"👤"} ${escapeHTML(n)}</div>
+<strong>${scores[i]}</strong> <small>PTS</small>
+</div>
+`).join("");
+}
+
+function drawQuestion(){
+locked=false;
+seconds=30;
+$("clock").textContent=30;
+$("feedback").classList.add("hidden");
+$("nextBtn").classList.add("hidden");
+
+let q=questions[sequence[round]];
+$("round").textContent="SOAL "+(round+1)+" / 10";
+$("bar").style.width=(round+1)*10+"%";
+$("question").textContent=q.q;
+
+updateScores();
+
+$("options").innerHTML=q.a.map((v,i)=>`
+<button class="answer" data-i="${i}">
+<strong>${"ABCD"[i]}.</strong> ${escapeHTML(v)}
+</button>
+`).join("");
+
+document.querySelectorAll("#options button").forEach(btn=>{
+btn.addEventListener("click",()=>{
+answer(Number(btn.dataset.i));
+});
+});
+
+clearInterval(timer);
+
+timer=setInterval(()=>{
+seconds--;
+$("clock").textContent=seconds;
+if(seconds<=0)answer(-1);
+},1000);
+}
+
+function answer(i){
+if(locked)return;
+locked=true;
+clearInterval(timer);
+
+let q=questions[sequence[round]];
+let correct=i===q.c;
+let points=correct?100:0;
+
+scores[turn]+=points;
+history.push({
+player:turn,
+correct:correct,
+question:q.q,
+answer:q.a[q.c]
+});
+
+document.querySelectorAll("#options button").forEach((b,j)=>{
+b.disabled=true;
+if(j===q.c)b.classList.add("good");
+if(j===i&&i!==q.c)b.classList.add("bad");
+});
+
+$("feedback").classList.remove("hidden");
+$("feedback").style.background=correct?"#d8f8e7":"#ffe4eb";
+$("feedback").style.color=correct?"#08623d":"#92304e";
+
+$("feedback").innerHTML=`
+<strong>${correct?"🌟 JAWABAN BENAR!":"💡 BELUM TEPAT!"}</strong>
+<p>${escapeHTML(q.e)}</p>
+<strong>+${points} POIN</strong>
+`;
+
+$("nextBtn").classList.remove("hidden");
+$("nextBtn").textContent=
+mode==="duel"&&turn===0?"GILIRAN PEMAIN BERIKUTNYA ➜":
+round===9?"LIHAT HASIL 🏆":"SOAL BERIKUTNYA ➜";
+
+updateScores();
+playTone(correct?790:230,.18);
+}
+
+function nextQuestion(){
+if(!locked)return;
+
+if(mode==="duel"&&turn===0){
+turn=1;
+drawQuestion();
+return;
+}
+
+turn=0;
+
+if(round===9){
+finishGame();
+return;
+}
+
+round++;
+drawQuestion();
+}
+
+function finishGame(){
+clearInterval(timer);
+show("result");
+
+let max=Math.max(...scores);
+let winner=scores.indexOf(max);
+
+let awards=[
+{min:0,icon:"🥉",name:"PEMULA"},
+{min:400,icon:"🥈",name:"CENDEKIA"},
+{min:600,icon:"🥇",name:"JUARA"},
+{min:800,icon:"👑",name:"MASTER ILMU"}
+];
+
+let award=awards.filter(x=>max>=x.min).pop();
+
+$("trophy").textContent=mode==="duel"&&scores[0]===scores[1]?"🤝":"🏆";
+
+$("resultTitle").textContent=
+mode==="single"?"HEBAT, "+names[0].toUpperCase()+"!":
+scores[0]===scores[1]?"PERTANDINGAN SERI!":
+"JUARA: "+names[winner].toUpperCase()+"!";
+
+$("resultText").textContent=
+"Selamat! Kamu telah menyelesaikan 10 tantangan.";
+
+$("finalScores").innerHTML=names.map((n,i)=>`
+<div class="player">
+<strong>${escapeHTML(n)}</strong>
+<h2>${scores[i]}</h2>
+${history.filter(h=>h.player===i&&h.correct).length}/10 BENAR
+</div>
+`).join("");
+
+$("medal").textContent=award.icon;
+$("rank").textContent=award.name;
+$("rankText").textContent="Berhasil memperoleh "+max+" poin.";
+
+$("earned").innerHTML=awards.map(x=>`
+<div class="badge ${max<x.min?"lock":""}">
+<span>${x.icon}</span>
+<small>${x.name}</small>
+</div>
+`).join("");
+
+$("recap").innerHTML=names.map((n,i)=>`
+<div class="boardrow">
+<span>${escapeHTML(n)}</span>
+<span>${history.filter(h=>h.player===i&&h.correct).length}/10 benar</span>
+</div>
+`).join("");
+
+names.forEach((n,i)=>{
+board.push({
+name:n,
+score:scores[i],
+mode:mode==="single"?"Tunggal":"Tanding"
+});
+});
+
+board.sort((a,b)=>b.score-a.score);
+board=board.slice(0,10);
+
+try{
+localStorage.setItem("abuBoard",JSON.stringify(board));
+}catch(e){}
+
+playTone(880,.3);
+}
+
+function renderBoard(){
+$("leaderboard").innerHTML=board.length?
+board.map((p,i)=>`
+<div class="boardrow">
+<span>${["🥇","🥈","🥉"][i]||"🏅"} ${escapeHTML(p.name)}
+<small style="display:block;font-weight:normal">${p.mode}</small>
+</span>
+<strong>${p.score} pts</strong>
+</div>
+`).join(""):"Belum ada juara.";
+}
+
+function clearBoard(){
+if(confirm("Hapus semua papan peringkat?")){
+board=[];
+localStorage.removeItem("abuBoard");
+renderBoard();
+}
+}
+
+function goHome(){
+clearInterval(timer);
+show("home");
+renderBoard();
+}
+
+function replay(){
+chooseMode(mode);
+}
+
+renderBoard();
+</script>
+</body>
+</html>
